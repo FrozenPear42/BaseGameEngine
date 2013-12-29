@@ -3,38 +3,22 @@ var DrawingEngine = (function()
 	
 	function drawPolygon(ctx, p, offsetX, offsetY)
 	{
-		var newX;
-		var newY;
-	
+		
 		offsetX = offsetX || 0;
 		offsetY = offsetY || 0;
 	
-		if(p.data.length <= 0)
+		if(p.data.length <= 0 || (!p.fill && !p.stroke))
 		return;
 	
 		ctx.beginPath();
-		
-		newX = (p.data[0].x + p.x);// * p.scaleX;
-		newY = (p.data[0].y + p.y);// * p.scaleY;
-		
-		newX -= offsetX;
-		newY -= offsetY;
-		
-		
-		ctx.moveTo(newX, newY);
-			
-		for(var i = 1; i < p.data.length; i++)
+				
+		for(var i = 0; i < p.data.length; i++)
 		{
-			newX = (p.data[i].x + p.x) * p.scaleX;
-			newY = (p.data[i].y + p.y) * p.scaleY;
-		
-			newX -= offsetX;
-			newY -= offsetY;
-		
-			ctx.lineTo(newX, newY);		
+			ctx.lineTo(p.data[i].x + p.x - offsetX,
+					   p.data[i].y + p.y - offsetY);
 		}
-		ctx.closePath();
-	
+		
+		ctx.closePath();	
 	
 		if(p.fill)
 		{
@@ -50,6 +34,17 @@ var DrawingEngine = (function()
 	
 	}
 	
+	
+	function drawSprite(ctx, i, offsetX, offsetY)
+	{
+		offsetX = offsetX || 0;
+		offsetY = offsetY || 0;
+		
+		ctx.drawImage(i.img, i.x - offsetX, i.y - offsetY);
+		
+	}
+	
+	
 	function clearScreen(ctx)
 	{
 		ctx.clearRect(0, 0, Engine.screenWidth, Engine.screenHeight);
@@ -63,13 +58,17 @@ var DrawingEngine = (function()
 		{
 			drawPolygon(ctx, scene.polygons[i], x, y);
 		}
-		//IMAGES
+		for( var i = 0; i < scene.sprites.length; i++)
+		{
+			drawSprite(ctx, scene.sprites[i], x, y);
+		}
 		//TEXTS
 
 	}
 
 	return {
 	drawPolygon : drawPolygon,
+	drawSprite : drawSprite,
 	clearScreen : clearScreen,
 	redrawScene : redrawScene
 	};
