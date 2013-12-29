@@ -15,7 +15,8 @@ function start()
 	poly = new Polygon(0, 0, [{"x":894,"y":365}, {"x":991,"y":349}, {"x":940,"y":205}, {"x":783,"y":197}, {"x":599,"y":279}, {"x":636,"y":468}, {"x":783,"y":573}, {"x":974,"y":545}, {"x":1045,"y":457}] , true, rgb((Math.floor(Math.random()*255)), (Math.floor(Math.random()*255)), (Math.floor(Math.random()*255))), true, "#000000");
 	poly2 = new Polygon(0, 0, [{"x":894,"y":365}, {"x":991,"y":349}, {"x":940,"y":205}, {"x":783,"y":197}, {"x":599,"y":279}, {"x":636,"y":468}, {"x":783,"y":573}, {"x":974,"y":545}, {"x":1045,"y":457}] , true, rgb((Math.floor(Math.random()*255)), (Math.floor(Math.random()*255)), (Math.floor(Math.random()*255))), true, "#000000"); 
 	img = new Sprite(0, 0, "res/sprites/tests.jpg");
-	
+	text = new Text(100, 100, new Font(), true, true, "asd");
+	scene.attachChild(text);
 	scene.attachChild(img);
 	
 	scene.attachChild(poly);		

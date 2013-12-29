@@ -7,9 +7,16 @@ var FPSCounter = (function()
 	var allCnt = 0;
 	var secCnt = 0;
 	
+	var id;
+	
 function start()
 {
-	setInterval(onSecPassed, 1000);
+	id = setInterval(onSecPassed, 1000);
+}
+
+function stop()
+{
+	// costam(id);
 }
 
 function update()

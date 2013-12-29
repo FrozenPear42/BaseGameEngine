@@ -7,16 +7,16 @@ function Polygon(x, y, data, fill, fillStyle, stroke, strokeStyle)
 	this.fillStyle = fillStyle;
 	this.stroke = stroke;
 	this.strokeStyle = strokeStyle;
-	
+
 	this.rotation = 0;
 	this.scaleX = 1;
 	this.scaleY = 1;
-	
+
 	this.width = null;
-	this.height  = null;
-	
+	this.height = null;
+
 	this.updateSize();
-	
+
 }
 
 Polygon.prototype.animate = function(func)
@@ -41,29 +41,27 @@ Polygon.prototype.scale = function(x, y)
 	this.scaleY = y;
 }
 
-
 Polygon.prototype.updateSize = function()
 {
 	var minX;
 	var minY;
 	var maxX;
 	var maxY;
-	
+
 	minX = this.data[0].x;
 	minY = this.data[0].y;
 	maxX = this.data[0].x;
 	maxY = this.data[0].y;
-	
-	
-	for(var i = 1; i < this.data.length; i++)
+
+	for (var i = 1; i < this.data.length; i++)
 	{
 		minX = Math.min(minX, Math.abs(this.data[i].x));
 		minY = Math.min(minY, Math.abs(this.data[i].y));
 		maxX = Math.max(maxX, Math.abs(this.data[i].x));
 		maxY = Math.max(maxY, Math.abs(this.data[i].y));
-	}	
+	}
 
-	this.width = Math.abs(minX-maxX)*this.scaleX;
-	this.height = Math.abs(minY-maxY)*this.scaleY;
+	this.width = Math.abs(minX - maxX) * this.scaleX;
+	this.height = Math.abs(minY - maxY) * this.scaleY;
 	return;
 }

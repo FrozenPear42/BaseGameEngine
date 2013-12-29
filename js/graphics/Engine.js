@@ -28,7 +28,7 @@ var Engine = (function()
 		mScene = scene;
 	}
 	
-		function setCamera(camera)
+	function setCamera(camera)
 	{
 		mCamera = camera;
 	}
@@ -49,5 +49,5 @@ var Engine = (function()
 	screenWidth : screenWidth,
 	screenHeight : screenHeight
 	};
-	
+
 })();
