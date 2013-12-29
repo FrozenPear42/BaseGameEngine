@@ -87,9 +87,6 @@ var DrawingEngine = (function()
 	}
 
 	return {
-		drawPolygon : drawPolygon,
-		drawSprite : drawSprite,
-		drawText : drawText,
 		clearScreen : clearScreen,
 		redrawScene : redrawScene
 	};

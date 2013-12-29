@@ -12,8 +12,16 @@ function start()
 	var arr = [];	
 	
 	
-	poly = new Polygon(0, 0, [{"x":894,"y":365}, {"x":991,"y":349}, {"x":940,"y":205}, {"x":783,"y":197}, {"x":599,"y":279}, {"x":636,"y":468}, {"x":783,"y":573}, {"x":974,"y":545}, {"x":1045,"y":457}] , true, rgb((Math.floor(Math.random()*255)), (Math.floor(Math.random()*255)), (Math.floor(Math.random()*255))), true, "#000000");
-	poly2 = new Polygon(0, 0, [{"x":894,"y":365}, {"x":991,"y":349}, {"x":940,"y":205}, {"x":783,"y":197}, {"x":599,"y":279}, {"x":636,"y":468}, {"x":783,"y":573}, {"x":974,"y":545}, {"x":1045,"y":457}] , true, rgb((Math.floor(Math.random()*255)), (Math.floor(Math.random()*255)), (Math.floor(Math.random()*255))), true, "#000000"); 
+	poly = new Polygon(0, 0, [{"x":894,"y":365}, {"x":991,"y":349}, {"x":940,"y":205}, {"x":783,"y":197}, {"x":599,"y":279}, {"x":636,"y":468}, {"x":783,"y":573}, {"x":974,"y":545}, {"x":1045,"y":457}] , true, true);
+	poly2 = new Polygon(0, 0, [{"x":894,"y":365}, {"x":991,"y":349}, {"x":940,"y":205}, {"x":783,"y":197}, {"x":599,"y":279}, {"x":636,"y":468}, {"x":783,"y":573}, {"x":974,"y":545}, {"x":1045,"y":457}] , true, true); 
+	
+	poly.fillStyle = rgb((Math.floor(Math.random()*255)), (Math.floor(Math.random()*255)), (Math.floor(Math.random()*255)));
+	poly2.fillStyle = rgb((Math.floor(Math.random()*255)), (Math.floor(Math.random()*255)), (Math.floor(Math.random()*255)));
+	
+	poly.strokeStyle = "#000000";
+	poly2.strokeStyle = "#000000";
+	
+	
 	img = new Sprite(0, 0, "res/sprites/tests.jpg");
 	text = new Text(100, 100, new Font(), true, true, "asd");
 	scene.attachChild(text);

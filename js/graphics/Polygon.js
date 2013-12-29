@@ -1,19 +1,14 @@
-function Polygon(x, y, data, fill, fillStyle, stroke, strokeStyle)
+function Polygon(x, y, data, fill, stroke)
 {
 	this.x = x;
 	this.y = y;
 	this.data = data;
 	this.fill = fill;
-	this.fillStyle = fillStyle;
 	this.stroke = stroke;
-	this.strokeStyle = strokeStyle;
-
+	
 	this.rotation = 0;
 	this.scaleX = 1;
 	this.scaleY = 1;
-
-	this.width = null;
-	this.height = null;
 
 	this.updateSize();
 
