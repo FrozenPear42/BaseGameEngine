@@ -8,19 +8,24 @@ var FPSCounter = (function()
 	var secCnt = 0;
 	
 	var id;
+	var state = false;
 	
 function start()
 {
 	id = setInterval(onSecPassed, 1000);
+	state = true;
 }
 
 function stop()
 {
-	// costam(id);
+	clearInterval(id);
+	state = false;
 }
 
 function update()
 {
+	if(!state)
+		return;
 	currentCnt++;
 	allCnt++;
 }
@@ -42,6 +47,7 @@ function onSecPassed()
 return {
 	update : update,
 	start : start,
+	stop : stop,
 	avgFPS : avgFPS,
 	currentFPS : currentFPS
 }

@@ -18,6 +18,9 @@ var Engine = (function()
 	var screenWidth = document.documentElement.clientWidth;
 	var screenHeight = document.documentElement.clientHeight;
 
+	var lastTime = 0;
+	var time = 0;
+	
 	function start()
 	{
 		var scripts = [];
@@ -66,8 +69,13 @@ var Engine = (function()
 
 	function onUpdate()
 	{
+		time = Date.now() - lastTime;
+		lastTime = Date.now();
+		
+		Animation.process(time);
+		
 		DrawingEngine.redrawScene(ctx, mScene, mCamera.x, mCamera.y);
-		console.log("redraw");
+		//console.log("redraw", time);
 		requestAnimationFrame(onUpdate);
 		FPSCounter.update();
 
