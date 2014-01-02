@@ -2,7 +2,7 @@ Array.prototype.removeElement = function(obj)
 {
 	var idx = this.indexOf(obj);
 	if(idx != -1)
-		this[idx] = this.pop();
+		this.splice(idx, 1);
 }
 
 function offsetArray(arr)

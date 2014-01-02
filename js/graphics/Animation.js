@@ -1,6 +1,7 @@
 var Animation = (function()
 {
-
+	
+	var animations = [];
 	var intervals = [];
 
 	function cancelAnimation(key)
@@ -33,8 +34,18 @@ var Animation = (function()
 		console.log("vY", vY);
 		console.log("steps", steps);
 		console.log("interval", (time*1000)/steps); 
+
+		animations.push({
+		obj : obj,
+		time : time,
+		func : func,
+		vX : vX,
+		vY : vY,
+		steps : steps,
+		cnt : 0
+		});
 		
-		intervals[obj] = setInterval(function()
+		/*intervals[obj] = setInterval(function()
 		{
 			cnt++;
 			if (cnt >= steps)
@@ -47,14 +58,31 @@ var Animation = (function()
 			obj.y += vY*(time/steps);
 			
 		}, (time*1000)/steps);
+	*/
 	}
 
 	function process(time)
 	{
+		animations.forEach(function(anim){
+		//console.log(anim);
+		//anim.cnt += (time/anim.steps);
+		anim.cnt += time*(anim.time/anim.steps);
+		if (anim.cnt >= anim.steps)
+		{
+			console.log(anim);
+			animations.removeElement(anim);
+			return;
+		}
+		anim.obj.x += anim.vX * (time/1000);
+		anim.obj.y += anim.vY * (time/1000);
+		
+		});
 	}
 	
 	return {
-		animMoveTo : animMoveTo
+		process : process,
+		animMoveTo : animMoveTo,
+		animations : animations
 	}
 
 })();
