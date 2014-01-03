@@ -35,7 +35,7 @@ function loadElement(i, urls, onProgressChange, onLast)
 			onLast();
 		});
 
-	onProgressChange((urls.length - i) / urls.length);
+	onProgressChange( i / urls.length);
 
 	return;
 }

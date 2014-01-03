@@ -5,11 +5,13 @@ function Polygon(x, y, data, fill, stroke)
 	this.data = data;
 	this.fill = fill;
 	this.stroke = stroke;
-	
+
 	this.rotation = 0;
 	this.scaleX = 1;
 	this.scaleY = 1;
 
+	this.alpha = 1;
+	
 	this.updateSize();
 
 }

@@ -11,6 +11,10 @@ var Animation = (function()
 
 	function animMoveTo(obj, toX, toY, time, func, callback)
 	{
+		
+		if(!obj.hasOwnProperty("x") || !obj.hasOwnProperty("y"))
+			return -1;
+		
 		var startX = obj.x;
 		var startY = obj.y;
 
@@ -35,6 +39,7 @@ var Animation = (function()
 
 		return animations.push(
 		{
+			type : "move",
 			obj : obj,
 			time : time,
 			func : func,
@@ -43,29 +48,107 @@ var Animation = (function()
 			steps : steps,
 			cnt : 0
 		});
+	}
 
+	function animFadeOut(obj, time, func, callback)
+	{
+		if(!obj.hasOwnProperty("alpha"))
+			return -1;
+		
+		return animations.push(
+		{
+			type : "fade",
+			obj : obj,
+			func : func,
+			time : -time,
+			to : 0
+		});
+	}
+
+	function animFadeIn(obj, time, func, callback)
+	{
+		if(!obj.hasOwnProperty("alpha"))
+			return -1;
+		
+		return animations.push(
+		{
+			type : "fade",
+			obj : obj,
+			func : func,
+			time : time,
+			to : 1
+
+		});
+	}
+	
+	function animFadeTo(obj, time, to, func, callback)
+	{
+		if(!obj.hasOwnProperty("alpha"))
+			return -1;
+		
+		return animations.push(
+				{
+					type : "fade",
+					obj : obj,
+					func : func,
+					time : time,
+					to : to,
+					direction : (to < obj.alpha ? -1 : 1)
+				});	
+	}
+	
 	function process(time)
 	{
 		animations.forEach(function(anim)
 		{
-
-			anim.cnt += time/((anim.time * 1000) / anim.steps);
-
-			if (anim.cnt >= anim.steps)
+			switch (anim.type)
 			{
-				console.log(anim);
-				animations.removeElement(anim);
-				return;
-			}
-			anim.obj.x += anim.vX * (time / 1000);
-			anim.obj.y += anim.vY * (time / 1000);
 
+			case "move":
+				anim.cnt += time / ((anim.time * 1000) / anim.steps);
+
+				if (anim.cnt >= anim.steps)
+				{
+					console.log(anim);
+					animations.removeElement(anim);
+					return;
+				}
+				anim.obj.x += anim.vX * (time / 1000);
+				anim.obj.y += anim.vY * (time / 1000);
+				break;
+
+			case "fade":
+
+				anim.obj.alpha += time / (anim.time * 1000);
+				
+				if (anim.obj.alpha < 0)
+				{
+					anim.obj.alpha = 0;
+					console.log(anim);
+					animations.removeElement(anim);
+					return;
+				}
+				if( anim.obj.alpha > 1)
+				{
+					anim.obj.alpha = 1;
+					console.log(anim);
+					animations.removeElement(anim);
+					return;
+				}	
+				
+				break;
+
+			}
 		});
+
 	}
 
 	return {
 		process : process,
 		animMoveTo : animMoveTo,
+		animFadeOut : animFadeOut,
+		animFadeIn : animFadeIn,
+		animFadeTo : animFadeTo,
 		animations : animations
 	}
 

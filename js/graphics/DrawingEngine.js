@@ -10,6 +10,8 @@ var DrawingEngine = (function()
 		if (p.data.length <= 0 || (!p.fill && !p.stroke))
 			return;
 
+		ctx.globalAlpha = p.alpha;
+		
 		ctx.beginPath();
 
 		for (var i = 0; i < p.data.length; i++)
@@ -38,12 +40,17 @@ var DrawingEngine = (function()
 		offsetX = offsetX || 0;
 		offsetY = offsetY || 0;
 
+		ctx.globalAlpha = i.alpha;
+		
 		ctx.drawImage(i.img, i.x - offsetX, i.y - offsetY);
 
 	}
 
 	function drawText(ctx, text, offsetX, offsetY)
 	{
+		
+		ctx.globalAlpha = text.alpha;
+		
 		ctx.font = text.font.style + " " + text.font.size + " " + text.font.font + " , sans serif";
 		ctx.fillStyle = text.fillColor;
 		ctx.strokeStyle = text.strokeColor;

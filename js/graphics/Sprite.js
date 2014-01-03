@@ -5,9 +5,6 @@ function Sprite(x, y, src)
 	this.img.src = src;
 	this.x = x;
 	this.y = y;
-}
-
-Sprite.prototype.setPosition = function(x, y)
-{
 	
+	this.alpha = 1;
 }
