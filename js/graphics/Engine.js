@@ -2,12 +2,15 @@ var Engine = (function()
 {
 
 	var mainScripts =
-	[ "./js/graphics/DrawingEngine.js", "./js/graphics/FPSCounter.js",
-			"./js/graphics/Scene.js", "./js/graphics/Camera.js",
-			"./js/graphics/Polygon.js", "./js/graphics/Text.js",
-			"./js/graphics/Font.js", "./js/graphics/Sprite.js",
-			"./js/graphics/Entity.js", "./js/graphics/Animation.js",
-			"./js/graphics/Util.js" ];
+	[ 	"./js/graphics/DrawingEngine.js",
+		"./js/graphics/FPSCounter.js",
+		"./js/graphics/Scene.js", 
+		"./js/graphics/Camera.js",
+		"./js/graphics/Entities.js",
+		"./js/graphics/Font.js", 
+		"./js/graphics/TexturePack.js",
+		"./js/graphics/Animation.js",
+		"./js/graphics/Util.js" ];
 
 	var ctx;
 	var mScene;

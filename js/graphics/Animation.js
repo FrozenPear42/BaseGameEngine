@@ -12,8 +12,6 @@ var Animation = (function()
 	function animMoveTo(obj, toX, toY, time, func, callback)
 	{
 		
-		if(!obj.hasOwnProperty("x") || !obj.hasOwnProperty("y"))
-			return -1;
 		
 		var startX = obj.x;
 		var startY = obj.y;
@@ -52,8 +50,6 @@ var Animation = (function()
 
 	function animFadeOut(obj, time, func, callback)
 	{
-		if(!obj.hasOwnProperty("alpha"))
-			return -1;
 		
 		return animations.push(
 		{
@@ -67,8 +63,6 @@ var Animation = (function()
 
 	function animFadeIn(obj, time, func, callback)
 	{
-		if(!obj.hasOwnProperty("alpha"))
-			return -1;
 		
 		return animations.push(
 		{
@@ -83,8 +77,6 @@ var Animation = (function()
 	
 	function animFadeTo(obj, time, to, func, callback)
 	{
-		if(!obj.hasOwnProperty("alpha"))
-			return -1;
 		
 		return animations.push(
 				{

@@ -45,7 +45,18 @@ var DrawingEngine = (function()
 		ctx.drawImage(i.img, i.x - offsetX, i.y - offsetY);
 
 	}
+	
+	function drawTPSprite(ctx, i, offsetX, offsetY)
+	{
+		offsetX = offsetX || 0;
+		offsetY = offsetY || 0;
 
+		ctx.globalAlpha = i.alpha;
+		
+		ctx.drawImage(i.img, i.sX, i.sY, i.sW, i.sH, i.x - offsetX, i.y - offsetY, i.sW, i.sH);
+
+	}
+	
 	function drawText(ctx, text, offsetX, offsetY)
 	{
 		
@@ -76,21 +87,18 @@ var DrawingEngine = (function()
 	{
 
 		clearScreen(ctx);
-		for (var i = 0; i < scene.polygons.length; i++)
-		{
-			drawPolygon(ctx, scene.polygons[i], x, y);
-		}
 		
-		for (var i = 0; i < scene.sprites.length; i++)
+		for(var i = 0; i < scene.children.length; i++)
 		{
-			drawSprite(ctx, scene.sprites[i], x, y);
+			if(scene.children[i] instanceof Polygon)
+				drawPolygon(ctx, scene.children[i], x, y);
+			else if(scene.children[i] instanceof Sprite)
+				drawSprite(ctx, scene.children[i], x, y);
+			else if(scene.children[i] instanceof TPSprite)
+				drawTPSprite(ctx, scene.children[i], x, y);
+			else if(scene.children[i] instanceof Text)
+				drawText(ctx, scene.children[i], x, y);
 		}
-		
-		for (var i = 0; i < scene.texts.length; i++)
-		{
-			drawText(ctx, scene.texts[i], x, y);
-		}
-		
 	}
 
 	return {
