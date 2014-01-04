@@ -14,14 +14,14 @@ Scene.prototype.attachChild = function(child)
 	if(child instanceof Entity) 
 	{
 		var id = this.children.push(child);
-		sortZIndex();
+		this.sortZIndex();
 		return id;
 	}
 	
 	return -1;
 }
 
-Scene.prototype.sortZIndex()
+Scene.prototype.sortZIndex = function()
 {
 	//sort(this.children, this.children.z);
 }
