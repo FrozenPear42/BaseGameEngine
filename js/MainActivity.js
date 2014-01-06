@@ -15,6 +15,10 @@ function onStartEngine()
 
 function onLoadResources(resources)
 {
+	texture1 = new Texture("res/sprites/test1.jpg");
+	texture2 = new Texture("res/sprites/test2.jpg");
+	resources.push(texture1);
+	resources.push(texture2);
 	
 }
 
@@ -40,10 +44,12 @@ function onActivity()
 	poly2.strokeStyle = "#000000";
 	
 	
-	img = new Sprite(0, 0, "res/sprites/test1.jpg");
+	img1 = new Sprite(0, 0, texture1);
+	img2 = new Sprite(200, 200, texture2);
 	text = new Text(100, 100, new Font(), true, true, "asd");
 	scene.attachChild(text);
-	scene.attachChild(img);
+	scene.attachChild(img1);
+	scene.attachChild(img2);
 	
 	scene.attachChild(poly);		
 	scene.attachChild(poly2);		

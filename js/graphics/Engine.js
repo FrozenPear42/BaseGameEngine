@@ -6,6 +6,7 @@ var Engine = (function()
 		"./js/graphics/FPSCounter.js",
 		"./js/graphics/Scene.js", 
 		"./js/graphics/Camera.js",
+		"./js/graphics/Texture.js",		
 		"./js/graphics/Entities.js",
 		"./js/graphics/Font.js", 
 		"./js/graphics/TexturePack.js",
@@ -42,9 +43,7 @@ var Engine = (function()
 		onStartEngine();
 
 		onLoadResources(resources);
-		// loadResources(resources, onLoadingResourcesProgress)
-
-		onActivity();
+		loadResources(resources, onLoadingProgress, onActivity);
 	}
 
 	function init(context, camera, mainScene)

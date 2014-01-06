@@ -10,8 +10,9 @@ function loadScript(url, callback)
 
 	var func = function()
 	{
-		callback();
+
 		console.log("callback: ", url);
+		callback();
 	};
 
 	script.onload = func;
@@ -20,22 +21,25 @@ function loadScript(url, callback)
 
 function loadScripts(urls, onProgressChange, onLast)
 {
-	loadElement(0, urls, onProgressChange, onLast);
-	return;
-}
-
-function loadElement(i, urls, onProgressChange, onLast)
-{
-	if (i + 1 < urls.length)
-		loadScript(urls[i], function(){loadElement(i + 1, urls, onProgressChange, onLast)});
+	
+	var s = urls.pop();
+	
+	if(s)
+		loadScript(s, function(){onProgressChange(urls.length); loadScripts(urls, onProgressChange, onLast)});
 	else
-		loadScript(urls[i], function()
-		{
-			console.log("last");
-			onLast();
-		});
-
-	onProgressChange( (i+1) / urls.length);
-
+		onLast();
 	return;
 }
+
+
+function loadResources(res, onLoadProgress, onLast)
+{
+	var r = res.pop();
+
+	if(r)
+		r.load(function(){onLoadProgress(res.length); loadResources(res, onLoadProgress, onLast)});
+	else
+		onLast();
+}
+
+

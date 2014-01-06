@@ -42,15 +42,13 @@ Entity.prototype.setZIndex = function(z)
 Sprite object - object representing image tahat is drawn on the canvas
 */
 
-function Sprite(x, y, src)
+function Sprite(x, y, texture)
 {
-	this.src = src;
-	this.img  = new Image();
-	this.img.src = src;
+	this.texture = texture;
 	this.x = x;
 	this.y = y;	
 	this.zIndex = 0;
-	}
+}
 
 Sprite.prototype = new Entity();
 

@@ -42,7 +42,7 @@ var DrawingEngine = (function()
 
 		ctx.globalAlpha = i.alpha;
 		
-		ctx.drawImage(i.img, i.x - offsetX, i.y - offsetY);
+		ctx.drawImage(i.texture.img, i.x - offsetX, i.y - offsetY);
 
 	}
 	
@@ -53,7 +53,7 @@ var DrawingEngine = (function()
 
 		ctx.globalAlpha = i.alpha;
 		
-		ctx.drawImage(i.img, i.sX, i.sY, i.sW, i.sH, i.x - offsetX, i.y - offsetY, i.sW, i.sH);
+		ctx.drawImage(i.texture.img, i.sX, i.sY, i.sW, i.sH, i.x - offsetX, i.y - offsetY, i.sW, i.sH);
 
 	}
 	
